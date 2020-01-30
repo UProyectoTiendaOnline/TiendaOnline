@@ -1,0 +1,385 @@
+/* Barra de navegación utilizando técnicas mobile-first */
+
+* {
+    box-sizing: border-box !important;
+}
+
+/* Contenedores generales */
+
+.site-navbar {
+    background: #333;
+    font-size: 18px;
+    color: #fff;
+    box-shadow: ;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 900;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+}
+
+.site-navbar__inner {
+    height: 48px;
+    width: 96%;
+}
+
+.navigation-wrapper {
+    padding: 25px 30px;
+    position: fixed;
+    height: calc(100vh - 48px);
+    z-index: 1000;
+    width: 100vw;
+    overflow-y: scroll;
+    background: white;
+    color: #333;
+    display: flex;
+    flex-flow: column;
+}
+
+/* Logotipo */
+
+.site-navbar__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.site-navbar__logo img {
+    height: 30px;
+}
+
+/* Vinculos */
+
+li a {
+    color: inherit;
+}
+
+.navigation-wrapper a {
+    text-decoration: none;
+}
+
+.navigation-group a.active {
+    font-weight: bold;
+}
+
+.navigation-element.submenu-parent > a {
+    display: none;
+}
+
+/* Estilos generales de "listas" de vínculos */
+
+.navigation-group {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+.navigation-submenu {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.navigation-element:not(.submenu-parent) {
+    padding: 14px 0;
+}
+
+.navigation-element a {
+    display: inline-block;
+    height: 100%;
+}
+
+.navigation-element .fa {
+    margin-right: 15px;
+}
+
+/* Links del sitio */
+
+.navigation-group--store {
+    border-top: #ccc 1px solid;
+    padding-top: 13px;
+    margin-top: 13px;
+}
+
+/* Triggers para el dropdown */
+
+.navigation__account-actions {
+    display: none;
+}
+
+.navigation__account-profile-pic {
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    display: none;
+}
+
+/* Dropdown */
+
+.user-menu-dropdown {
+    order: -1;
+}
+
+.user-menu-dropdown__header {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+}
+
+.user-menu-dropdown__header-actions {
+    flex-grow: 1;
+    margin-left: 20px;
+    color: #555;
+}
+
+.user-menu-dropdown__profile-pic {
+    width: 72px;
+    border-radius: 100%;
+}
+
+.user-menu-dropdown__welcome {
+    font-size: 20px;
+    font-family: Montserrat;
+    font-weight: 500;
+}
+
+.user-menu-dropdown__logout {
+    display: block;
+    margin-top: 15px;
+    font-size: 16px;
+}
+
+.user-menu-dropdown__logout, 
+.user-menu-dropdown__logout:hover,
+.user-menu-dropdown__logout:visited {
+    color: #555;
+}
+
+.user-menu-dropdown hr {
+    height: 1px;
+    background: #ccc;
+    border: none;
+    margin-top: 22px;
+}
+
+
+/* AJUSTES MENORES DE TEXTO EN RESOLUCIONES NO TAN PEQUEÑAS*/
+@media screen and (min-width: 366px){
+    .navigation-group, .user-menu-dropdown__logout {
+        font-size: 18px;
+    }
+    .user-menu-dropdown__welcome {
+        font-size: 22px;
+    }
+}
+
+/* ESTILOS DESKTOP/TABLETS GRANDES */
+@media screen and (min-width: 992px){
+    .site-navbar {
+        font-size: 15px;
+    }
+    .site-navbar__inner {
+        height: 54px;
+        max-width: 1210px;
+        display: flex;
+        margin: 0 auto;
+        align-items: center;
+    }
+    
+    .navigation-wrapper {
+        color: inherit;
+        background: none;
+        display: block;
+        position: relative;
+        height: 100%;
+        z-index: initial;
+        width: initial;
+        flex-grow: 1;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0;
+        margin-left: 20px;
+        overflow: initial;
+    }
+    .site-navbar__logo {
+        display: block;
+        height: initial;
+    }
+    .site-navbar__logo img {
+        height: 42px;
+    }
+    .navigation-element.submenu-parent > a {
+        display: inline-block;
+    }
+    .navigation-submenu .navigation-element a {
+        padding: 0;
+    }
+    .navigation-group {
+        font-size: 15px;
+    }
+    .submenu-parent {
+        position: relative;
+    }
+    .submenu-parent:hover .navigation-submenu {
+        display: block;
+    }
+    .navigation-group--store {
+        display: block;
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+    }
+    .navigation-group--store .navigation-element {
+        display: inline-block;
+    }
+    .navigation-element:not(.submenu-parent) {
+        padding: 0;
+    }
+    .navigation-group--store .navigation-element:not(.submenu-parent) .fa,
+    .navigation-submenu .fa {
+        display: none;
+    }
+    .navigation-group--store li {
+        margin: 0 13px;
+    }
+    .navigation-group--store li,
+    .navigation-group--store a {
+        height: 100%;
+    }
+    .navigation-group--store a {
+        opacity: 0.8;
+        padding: 18px 0;
+    }
+    .navigation-group--store a:hover, .navigation-group--store a.active {
+        opacity: 1;
+    }
+    .navigation-group--store a.active {
+        font-weight: bold;
+    }
+    .navigation-submenu::before {
+        position: absolute;
+        top: -18px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        display: block;
+        content: ' ';
+        width: 0;
+        border-width: 0 15px 20px;
+        border-style: solid;
+        border-color: #fff transparent;
+    }
+    .navigation-submenu::after {
+        position: absolute;
+        top: -18px;
+        left: 0;
+        width: 100%;
+        content: ' ';
+        height: 20px;
+        display: block;
+    }
+    .navigation-submenu {
+        position: absolute;
+        padding: 15px 22px;
+        background: #fff;
+        transform: translate(-50%, 0);
+        left: 50%;
+        width: 185%;
+        border-radius: 5px;
+        box-shadow: 0px 2px 3px rgba(0,0,0,0.2);
+        z-index: 900;
+        display: none;
+        top: 60px;
+    }
+    .navigation-submenu .navigation-element {
+        margin: 0;
+        color: #333;
+        display: block;
+        padding: 14px 0;
+    }
+    .navigation-submenu .navigation-element:hover {
+        color: #000;
+        font-weight: bolder;
+    }
+    .navigation-group--user {
+        color: #333;
+    }
+    .navigation__account-actions {
+        display: flex;
+        align-items: center;
+    }
+    .navigation__account-actions span {
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .navigation__account-profile-pic {
+        display: initial;
+        margin-left: 20px;
+        margin-right: 5px;
+        cursor: pointer;
+    }
+    .navigation__account-actions .fa {
+        cursor: pointer;
+    }
+    .user-menu-dropdown {
+        background: white;
+        position: absolute;
+        top: 60px;
+        right: -5px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 3px rgba(0,0,0,0.2);
+        padding: 25px 25px 18px 25px;
+        width: 347px;
+    }
+    .user-menu-dropdown.show {
+        display:block;
+    }
+    .user-menu-dropdown:not(.show) {
+        display:none;
+    }
+    .user-menu-dropdown__header {
+        position: relative;
+    }
+    .user-menu-dropdown__header::before {
+        content: ' ';
+        position: absolute;
+        top: -38px;
+        right: -3px;
+        display: block;
+        width: 0;
+        border-width: 0 15px 20px;
+        border-style: solid;
+        border-color: #fff transparent;
+    }
+    .user-menu-dropdown__welcome {
+        font-size: 20px;
+    }
+    .user-menu-dropdown__logout {
+        margin-top: 15px;
+        font-size: inherit;
+    }
+    .user-menu-dropdown__logout:hover {
+        text-decoration: underline;
+    }
+    .user-menu-dropdown hr {
+        margin: 20px 0 12px 0;
+    }
+    .navigation-group--user .navigation-element {
+        padding: 10px 0;
+    }
+}
+
+/* AJUSTES MENORES PARA PANTALLAS GRANDES */
+@media screen and (min-width: 1300px){
+    .user-menu-dropdown {
+        right: -40px;
+    }
+    .user-menu-dropdown__header::before {
+        right: 32px;
+    }
+}

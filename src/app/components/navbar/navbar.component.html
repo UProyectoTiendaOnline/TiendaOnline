@@ -1,26 +1,68 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Tienda en Linea</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarColor02">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#" routerLink="/">Home <span class="sr-only">(current)</span></a>
+<nav class="site-navbar">
+  <div class="site-navbar__inner">
+    <a class="site-navbar__logo" href="#" routerLink="/" title="Ir a la página principal"><img src="/assets/img/logo_white.png" alt="Logotipo de la tienda"></a>
+    <div class="navigation-wrapper">
+      <ul class="navigation-group navigation-group--store">
+        <li class="navigation-element">
+          <a href="#" routerLink="/" routerLinkActive="active"><i class="fa fa-home"></i>Inicio</a>
+        </li> 
+        <li class="navigation-element">
+          <a href="#"><i class="fa fa-home"></i>Catálogo</a>
+        </li> 
+        <li class="navigation-element">
+          <a href="#"><i class="fa fa-home"></i>Ofertas</a>
+        </li> 
+        <li class="navigation-element submenu-parent">
+          <a href="#">Búsqueda rápida <i class="fa fa-angle-down"></i></a>
+          <ul class="navigation-submenu">
+            <li class="navigation-element">
+              <a href="#"><i class="fa fa-home"></i>Buscar por modelo de auto</a>
+            </li>
+            <li class="navigation-element">
+              <a href="#"><i class="fa fa-home"></i>Buscar por medidas de llanta</a>
+            </li>
+          </ul>
         </li>
       </ul>
-      <ul class="navbar-nav mx-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#" routerLink="/login">Login<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" routerLink="/register">Registrarse</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Salir</a>
-        </li>
-      </ul>
-     
+      <div class="navigation__account-actions" *ngIf="true">
+        <span>Usuario</span>
+        <img src="/assets/img/nouser.png" alt="Foto de perfil" class="navigation__account-profile-pic">
+        <i class="fa fa-angle-down"></i>
+      </div>
+      <div class="navigation-account" *ngIf="false">
+        <a href="#" routerLink="/login">Iniciar sesión</a>
+        <a href="#" routerLink="/register">Registrarse</a>
+      </div>
+      <div class="user-menu-dropdown" #dropdownMenu>
+        <div class="user-menu-dropdown__header" *ngIf="true">
+          <img class="user-menu-dropdown__profile-pic" src="/assets/img/nouser.png" alt="Foto de perfil">
+          <div class="user-menu-dropdown__header-actions">
+            <span class="user-menu-dropdown__welcome">¡Hola, Usuario!</span>
+            <a class="user-menu-dropdown__logout" href="#">Cerrar sesión</a>
+          </div>
+        </div>
+        <div *ngIf="false">
+          <img src="#" alt="Foto de perfil" class="profile-pic">
+          Bienvenido <br>
+          <a href="#" routerLink="/login">Iniciar sesión</a>
+          <a href="#" routerLink="/register">Registrarse</a>
+        </div>
+        <hr>
+        <ul class="navigation-group navigation-group--user">
+          <li class="navigation-element">
+          <a href="#"><i class="fa fa-home"></i>Mi cuenta</a>
+          </li> 
+          <li class="navigation-element">
+            <a href="#"><i class="fa fa-home"></i>Mis pedidos</a>
+          </li> 
+          <li class="navigation-element">
+            <a href="#"><i class="fa fa-home"></i>Favoritos</a>
+          </li> 
+          <li class="navigation-element">
+            <a href="#"><i class="fa fa-home"></i>Configuraciones</a>
+          </li>
+        </ul>
+      </div>
     </div>
-  </nav>
+  </div>
+</nav>
