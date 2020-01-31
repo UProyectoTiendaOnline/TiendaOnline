@@ -2,54 +2,96 @@
 
 @font-face {
   font-family: OpenSans;
+  font-style: normal;
+  font-weight: normal;
   src: local("OpenSans Regular"),
     local("OpenSans-Regular"),
     url("/assets/fonts/Open_Sans/OpenSans-Regular.ttf");
-  font-weight: normal;
-  font-style: normal;
 }
 
 @font-face {
   font-family: OpenSans;
+  font-style: italic;
+  font-weight: normal;
   src: local("OpenSans Italic"),
     local("OpenSans-Italic"),
     url("/assets/fonts/Open_Sans/OpenSans-Italic.ttf");
-  font-weight: normal;
-  font-style: italic;
 }
 
 @font-face {
   font-family: OpenSans;
+  font-style: normal;
+  font-weight: bold;
   src: local("OpenSans Bold"),
     local("OpenSans-Bold"),
     url("/assets/fonts/Open_Sans/OpenSans-Bold.ttf");
-  font-weight: bold;
-  font-style: normal;
 }
 
 @font-face {
   font-family: Montserrat;
+  font-weight: 500;
   src: local("Montserrat Medium"),
     local("Montserrat-Medium"),
     url("/assets/fonts/Montserrat/Montserrat-Medium.ttf");
-  font-weight: 500;
 }
 
 @font-face {
   font-family: Montserrat;
+  font-weight: 600;
   src: local("Montserrat SemiBold"),
     local("Montserrat-SemiBold"),
     url("/assets/fonts/Montserrat/Montserrat-SemiBold.ttf");
-  font-weight: 600;
 }
 
 body {
-    font-family: OpenSans;
-    color: #333;
     background: #fafafa;
+    color: #333;
+    font-family: OpenSans;
+    padding-top: 48px;
 }
 
 h1, h2, h3, h4, h5, .title, .subtitle {
     font-family: Montserrat;
     font-weight: 500;
+}
+
+.site-button {
+    background: transparent;
+    border-color: #333;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    color: inherit;
+    display: inline-block;
+    font-family: Montserrat;
+    font-weight: 600;
+    padding: 0.5em 1em;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+a.site-button {
+    text-decoration: none;
+}
+
+.site-button--transparent {
+    border-color: transparent;
+}
+
+.site-button--solid {
+    background: #333;
+    border-color: #333;
+    color: #fff;
+}
+
+.site-button:hover,
+.site-button:active {
+    background: #666;
+    border-color: #666;
+    color: #fff;
+}
+
+@media screen and (min-width: 992px){
+    .body {
+        padding-top: 54px;
+    }
 }
