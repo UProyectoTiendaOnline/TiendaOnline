@@ -21,6 +21,7 @@ import { filter } from "rxjs/operators";
 export class NavbarComponent implements AfterViewInit, OnDestroy {
   widthBreakdown: MediaQueryList;
   showMenu: boolean;
+  loggedUser: boolean;
   clickListener;
   touchListener;
  
@@ -28,6 +29,7 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
   constructor(private renderer: Renderer2, private router: Router) {
       this.widthBreakdown = window.matchMedia('(min-width: 992px)');
       this.showMenu = false;
+      this.loggedUser = false;
 
       router.events
         .pipe(filter((event: NavigationEvent) => {
@@ -37,7 +39,7 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
           if (this.showMenu) {
             this.toggleMobileMenu();
           }
-          if (this.widthBreakdown.matches) {
+          if (this.widthBreakdown.matches && this.loggedUser) {
             this.dropdownMenu.nativeElement.classList.remove('show');
           }
         });
@@ -85,20 +87,24 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-      if (this.widthBreakdown.matches) {
-          this.useDesktopMenu();
-      }
-      
-      this.widthBreakdown.addListener(this.checkWindowWidth);
+    if (this.loggedUser) {
+        if (this.widthBreakdown.matches) {
+            this.useDesktopMenu();
+        }
+        
+        this.widthBreakdown.addListener(this.checkWindowWidth);
+    }  
   }
 
   ngOnDestroy() {
-      if (this.clickListener) {
-          this.clickListener()
-      }
-      if (this.touchListener) {
-          this.touchListener()
-      }
-      this.widthBreakdown.removeListener(this.checkWindowWidth);
+    if (this.loggedUser) {
+        if (this.clickListener) {
+            this.clickListener()
+        }
+        if (this.touchListener) {
+            this.touchListener()
+        }
+        this.widthBreakdown.removeListener(this.checkWindowWidth);
+    }  
   }
 }

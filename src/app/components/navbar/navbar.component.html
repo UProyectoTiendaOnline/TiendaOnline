@@ -10,59 +10,55 @@
           <a href="#" routerLink="" routerLinkActive="active"><i class="fa fa-home"></i>Inicio</a>
         </li> 
         <li class="navigation-element">
-          <a href="#"><i class="fa fa-home"></i>Catálogo</a>
+          <a href="#"><i class="fa fa-th-large"></i>Catálogo</a>
         </li> 
         <li class="navigation-element">
-          <a href="#"><i class="fa fa-home"></i>Ofertas</a>
+          <a href="#"><i class="fa fa-percentage"></i>Ofertas</a>
         </li> 
         <li class="navigation-element submenu-parent">
           <a href="#">Búsqueda rápida <i class="fa fa-angle-down"></i></a>
           <ul class="navigation-submenu">
             <li class="navigation-element">
-              <a href="#"><i class="fa fa-home"></i>Buscar por modelo de auto</a>
+              <a href="#"><i class="fas fa-car"></i>Buscar por modelo de auto</a>
             </li>
             <li class="navigation-element">
-              <a href="#"><i class="fa fa-home"></i>Buscar por medidas de llanta</a>
+              <a href="#"><i class="fas fa-ruler"></i>Buscar por medidas de llanta</a>
             </li>
           </ul>
         </li>
       </ul>
-      <div class="navigation__account-actions" *ngIf="true">
+      <div class="navigation__account-actions" *ngIf="loggedUser">
         <span>Usuario</span>
         <img src="/assets/img/nouser.png" alt="Foto de perfil" class="navigation__account-profile-pic">
         <i class="fa fa-angle-down"></i>
       </div>
-      <div class="navigation-account" *ngIf="false">
-        <a href="#" routerLink="/login">Iniciar sesión</a>
-        <a href="#" routerLink="/register">Registrarse</a>
+      <div class="navigation__account-actions" *ngIf="!loggedUser">
+        <a class="site-button site-button--transparent" href="#" routerLink="/login">Iniciar sesión</a>
+        <a class="site-button" href="#" routerLink="/register">Registrarse</a>
       </div>
       <div class="user-menu-dropdown" #dropdownMenu>
-        <div class="user-menu-dropdown__header" *ngIf="true">
+        <div class="user-menu-dropdown__header">
           <img class="user-menu-dropdown__profile-pic" src="/assets/img/nouser.png" alt="Foto de perfil">
-          <div class="user-menu-dropdown__header-actions">
-            <span class="user-menu-dropdown__welcome">¡Hola, Usuario!</span>
-            <a class="user-menu-dropdown__logout" href="#">Cerrar sesión</a>
+          <div [ngClass]="{'user-menu-dropdown__header-actions':true, 'logged-user': loggedUser}">
+            <span class="user-menu-dropdown__welcome"><span *ngIf="loggedUser">¡Hola, Usuario!</span><span *ngIf="!loggedUser">Bienvenido</span></span>
+            <a class="user-menu-dropdown__logout" href="#" *ngIf="loggedUser">Cerrar sesión</a>
+            <a class="site-button site-button" href="#" routerLink="/login"  *ngIf="!loggedUser">Inicia sesión</a>
+            <a class="site-button site-button--solid" href="#" routerLink="/register" *ngIf="!loggedUser">Crea tu cuenta</a>
           </div>
-        </div>
-        <div *ngIf="false">
-          <img src="#" alt="Foto de perfil" class="profile-pic">
-          Bienvenido <br>
-          <a href="#" routerLink="/login">Iniciar sesión</a>
-          <a href="#" routerLink="/register">Registrarse</a>
         </div>
         <hr>
         <ul class="navigation-group navigation-group--user">
           <li class="navigation-element">
-          <a href="#"><i class="fa fa-home"></i>Mi cuenta</a>
+          <a href="#"><i class="fa fa-user-circle"></i>Mi cuenta</a>
           </li> 
           <li class="navigation-element">
-            <a href="#"><i class="fa fa-home"></i>Mis pedidos</a>
+            <a href="#"><i class="fa fa-truck"></i>Mis pedidos</a>
           </li> 
           <li class="navigation-element">
-            <a href="#"><i class="fa fa-home"></i>Favoritos</a>
+            <a href="#"><i class="fa fa-heart"></i>Favoritos</a>
           </li> 
           <li class="navigation-element">
-            <a href="#"><i class="fa fa-home"></i>Configuraciones</a>
+            <a href="#"><i class="fa fa-cogs"></i>Configuraciones</a>
           </li>
         </ul>
       </div>
