@@ -1,11 +1,17 @@
-import { 
+import {
     Component, 
     Renderer2, 
     OnDestroy, 
     ViewChild, 
     ElementRef,
-    AfterViewInit 
+    AfterViewInit
 } from '@angular/core';
+
+import {
+    Router,
+    Event as NavigationEvent,
+    NavigationStart} from "@angular/router";
+import { filter } from "rxjs/operators";
 
 @Component({
   selector: 'app-navbar',
@@ -14,16 +20,31 @@ import {
 })
 export class NavbarComponent implements AfterViewInit, OnDestroy {
   widthBreakdown: MediaQueryList;
+  showMenu: boolean;
   clickListener;
   touchListener;
  
   @ViewChild('dropdownMenu', {static: false}) dropdownMenu; 
-  constructor(private renderer: Renderer2) {
+  constructor(private renderer: Renderer2, private router: Router) {
       this.widthBreakdown = window.matchMedia('(min-width: 992px)');
+      this.showMenu = false;
+
+      router.events
+        .pipe(filter((event: NavigationEvent) => {
+            return( event instanceof NavigationStart );
+          }))
+        .subscribe((event: NavigationStart) => {
+          if (this.showMenu) {
+            this.toggleMobileMenu();
+          }
+          if (this.widthBreakdown.matches) {
+            this.dropdownMenu.nativeElement.classList.remove('show');
+          }
+        });
   }
 
-  toggleNavbar() {
-
+  toggleMobileMenu() {
+    this.showMenu = !this.showMenu;
   }
 
   checkWindowWidth = () => {
@@ -35,16 +56,14 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
   }
 
   eventHandler = (e) => {
-    if ( 
-        !this.dropdownMenu.nativeElement.contains(e.target) &&
-        this.dropdownMenu.nativeElement.classList.contains('show')
-      ) {
+    var targetIsDropdown = this.dropdownMenu.nativeElement.contains(e.target),
+      targetIsNavAccountActions = e.target.parentElement.matches('.navigation__account-actions'),
+      dropdownIsVisible = this.dropdownMenu.nativeElement.classList.contains('show');
+
+    if (!targetIsDropdown && dropdownIsVisible) {
       this.dropdownMenu.nativeElement.classList.remove('show');
     }
-    else if (
-        e.target.parentElement.matches('.navigation__account-actions') &&
-        !this.dropdownMenu.nativeElement.classList.contains('show')
-      ) {
+    else if (targetIsNavAccountActions && !dropdownIsVisible) {
       this.dropdownMenu.nativeElement.classList.add('show');
     }
   }
