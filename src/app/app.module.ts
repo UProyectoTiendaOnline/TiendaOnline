@@ -22,6 +22,7 @@ import {environment} from '../environments/environment';
 
 import { AuthService } from './servicios/auth.service';
 import { PrivatePageComponent } from './components/private-page/private-page.component';
+import { SiteFooterComponent } from './components/site-footer/site-footer.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { PrivatePageComponent } from './components/private-page/private-page.com
   RegisterPageComponent,
   LoginPageComponent,
   NotFoundPageComponent,
-  PrivatePageComponent
+  PrivatePageComponent,
+  SiteFooterComponent
 ],
 imports: [
   BrowserModule,
