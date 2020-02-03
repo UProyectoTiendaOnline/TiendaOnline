@@ -47,6 +47,7 @@ body {
     background: #fafafa;
     color: #333;
     font-family: OpenSans;
+    font-size: 18px;
     padding-top: 48px;
 }
 
@@ -91,7 +92,8 @@ a.site-button {
 }
 
 @media screen and (min-width: 992px){
-    .body {
+    body {
         padding-top: 54px;
+        font-size: 16px;
     }
 }
