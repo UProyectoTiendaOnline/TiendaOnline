@@ -132,7 +132,7 @@ li a {
 
 /* Links del sitio */
 
-.navigation-group--store {
+.navigation-group--store.logged-user {
     border-top: #ccc 1px solid;
     margin-top: 13px;
     padding-top: 13px;
@@ -347,8 +347,10 @@ li a {
         display: block;
     }
     .navigation-group--store {
-        border-top: none;
         display: block;
+    }
+    .navigation-group--store.logged-user {
+        border-top: none;
         margin-top: 0;
         padding-top: 0;
     }
@@ -471,7 +473,7 @@ li a {
         content: ' ';
         display: block;
         position: absolute;
-        right: -3px;
+        right: 12px;
         top: -38px;
         width: 0;
     }
@@ -499,6 +501,6 @@ li a {
         right: -40px;
     }
     .user-menu-dropdown__header::before {
-        right: 32px;
+        right: 48px;
     }
 }

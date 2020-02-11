@@ -12,6 +12,9 @@ import {
     Event as NavigationEvent,
     NavigationStart} from "@angular/router";
 import { filter } from "rxjs/operators";
+import {Subscription} from 'rxjs';
+
+import {AuthService} from '../../servicios/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -19,19 +22,35 @@ import { filter } from "rxjs/operators";
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements AfterViewInit, OnDestroy {
-  widthBreakdown: MediaQueryList;
-  showMenu: boolean;
-  loggedUser: boolean;
-  clickListener;
-  touchListener;
+  private widthBreakdown: MediaQueryList;
+  private showMenu: boolean;
+  private subscription:Subscription;
+  private clickListener;
+  private touchListener;
+  user: any;
  
   @ViewChild('dropdownMenu', {static: false}) dropdownMenu; 
-  constructor(private renderer: Renderer2, private router: Router) {
+  constructor(
+    private _renderer: Renderer2, 
+    private _router: Router, 
+    public _authService: AuthService) {
       this.widthBreakdown = window.matchMedia('(min-width: 992px)');
       this.showMenu = false;
-      this.loggedUser = false;
 
-      router.events
+      this.subscription = this._authService.user
+        .subscribe(user => {
+          this.user = user;
+          if (user) {
+            this.checkWindowWidth();
+          } else {
+            if (this.dropdownMenu) {
+              this.dropdownMenu.nativeElement.classList.remove('show');
+            }
+            this.destroyListeners();
+          }
+        });
+
+      _router.events
         .pipe(filter((event: NavigationEvent) => {
             return( event instanceof NavigationStart );
           }))
@@ -39,7 +58,7 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
           if (this.showMenu) {
             this.toggleMobileMenu();
           }
-          if (this.widthBreakdown.matches && this.loggedUser) {
+          if (this.widthBreakdown.matches && this.user) {
             this.dropdownMenu.nativeElement.classList.remove('show');
           }
         });
@@ -50,10 +69,12 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
   }
 
   checkWindowWidth = () => {
-    if (this.widthBreakdown.matches) {
-        this.useDesktopMenu();
-    } else {
-        this.useMobileMenu();
+    if (this.user) {
+      if (this.widthBreakdown.matches) {
+          this.useDesktopMenu();
+      } else {
+          this.useMobileMenu();
+      }
     }
   }
 
@@ -71,40 +92,40 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
   }
 
   useDesktopMenu() {
-      this.clickListener = this.renderer
-          .listen('document', 'click', this.eventHandler);
-      this.touchListener = this.renderer
-          .listen('document', 'touchstart', this.eventHandler);
+    this.clickListener = this._renderer
+      .listen('document', 'click', this.eventHandler);
+    this.touchListener = this._renderer
+      .listen('document', 'touchstart', this.eventHandler);
   }
 
   useMobileMenu() {
-      if (this.clickListener) {
-          this.clickListener()
-      }
-      if (this.touchListener) {
-          this.touchListener()
-      }
+    if (this.clickListener) {
+      this.clickListener()
+    }
+    if (this.touchListener) {
+      this.touchListener()
+    }
   }
 
   ngAfterViewInit() {
-    if (this.loggedUser) {
-        if (this.widthBreakdown.matches) {
-            this.useDesktopMenu();
-        }
-        
-        this.widthBreakdown.addListener(this.checkWindowWidth);
-    }  
+    if (this.user && this.widthBreakdown.matches) {
+      this.useDesktopMenu();
+    }
+    this.widthBreakdown.addListener(this.checkWindowWidth);
+  }
+
+  destroyListeners() {
+    if (this.clickListener) {
+      this.clickListener()
+    }
+    if (this.touchListener) {
+      this.touchListener()
+    }
   }
 
   ngOnDestroy() {
-    if (this.loggedUser) {
-        if (this.clickListener) {
-            this.clickListener()
-        }
-        if (this.touchListener) {
-            this.touchListener()
-        }
-        this.widthBreakdown.removeListener(this.checkWindowWidth);
-    }  
+    this.destroyListeners(); 
+    this.widthBreakdown.removeListener(this.checkWindowWidth);
+    this.subscription.unsubscribe();
   }
 }

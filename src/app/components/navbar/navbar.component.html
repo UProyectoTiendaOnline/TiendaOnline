@@ -5,7 +5,7 @@
     </button>
     <a class="site-navbar__logo" href="#" routerLink="/" title="Ir a la página principal"><img src="/assets/img/logo_white.png" alt="Logotipo de la tienda"></a>
     <div [ngClass]="{'navigation-wrapper':true, 'show': showMenu}">
-      <ul class="navigation-group navigation-group--store">
+      <ul [ngClass]="{'navigation-group navigation-group--store':true, 'logged-user': user}">
         <li class="navigation-element">
           <a href="#" routerLink="" routerLinkActive="active"><i class="fa fa-home"></i>Inicio</a>
         </li> 
@@ -27,27 +27,32 @@
           </ul>
         </li>
       </ul>
-      <div class="navigation__account-actions" *ngIf="loggedUser">
+      <div class="navigation__account-actions" *ngIf="user">
         <span>Usuario</span>
         <img src="/assets/img/nouser.png" alt="Foto de perfil" class="navigation__account-profile-pic">
         <i class="fa fa-angle-down"></i>
       </div>
-      <div class="navigation__account-actions" *ngIf="!loggedUser">
+      <div class="navigation__account-actions" *ngIf="!user">
         <a class="site-button site-button--transparent" href="#" routerLink="/login">Inicia sesión</a>
         <a class="site-button" href="#" routerLink="/register">Crea tu cuenta</a>
       </div>
       <div class="user-menu-dropdown" #dropdownMenu>
         <div class="user-menu-dropdown__header">
           <img class="user-menu-dropdown__profile-pic" src="/assets/img/nouser.png" alt="Foto de perfil">
-          <div [ngClass]="{'user-menu-dropdown__header-actions':true, 'logged-user': loggedUser}">
-            <span class="user-menu-dropdown__welcome"><span *ngIf="loggedUser">¡Hola, Usuario!</span><span *ngIf="!loggedUser">Bienvenido</span></span>
-            <a class="user-menu-dropdown__logout" href="#" *ngIf="loggedUser">Cerrar sesión</a>
-            <a class="site-button site-button" href="#" routerLink="/login"  *ngIf="!loggedUser">Inicia sesión</a>
-            <a class="site-button site-button--solid" href="#" routerLink="/register" *ngIf="!loggedUser">Crea tu cuenta</a>
+          <div [ngClass]="{'user-menu-dropdown__header-actions':true, 'logged-user': user}">
+            <span class="user-menu-dropdown__welcome">
+              <ng-container *ngIf="user">¡Hola, Usuario!</ng-container>
+              <ng-container *ngIf="!user">Bienvenido</ng-container>
+            </span>
+            <a class="user-menu-dropdown__logout" href="#" *ngIf="user" (click)="_authService.logout()">Cerrar sesión</a>
+            <ng-container *ngIf="!user">
+            <a class="site-button site-button" href="#" routerLink="/login">Inicia sesión</a>
+            <a class="site-button site-button--solid" href="#" routerLink="/register">Crea tu cuenta</a>
+            </ng-container>
           </div>
         </div>
         <hr>
-        <ul class="navigation-group navigation-group--user">
+        <ul class="navigation-group navigation-group--user" *ngIf="user">
           <li class="navigation-element">
           <a href="#"><i class="fa fa-user-circle"></i>Mi cuenta</a>
           </li> 
