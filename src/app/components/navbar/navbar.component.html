@@ -32,7 +32,7 @@
         <img src="/assets/img/nouser.png" alt="Foto de perfil" class="navigation__account-profile-pic">
         <i class="fa fa-angle-down"></i>
       </div>
-      <div class="navigation__account-actions" *ngIf="!user">
+      <div class="navigation__account-actions" *ngIf="user === null">
         <a class="site-button site-button--transparent" href="#" routerLink="/login">Inicia sesión</a>
         <a class="site-button" href="#" routerLink="/register">Crea tu cuenta</a>
       </div>
@@ -42,10 +42,10 @@
           <div [ngClass]="{'user-menu-dropdown__header-actions':true, 'logged-user': user}">
             <span class="user-menu-dropdown__welcome">
               <ng-container *ngIf="user">¡Hola, Usuario!</ng-container>
-              <ng-container *ngIf="!user">Bienvenido</ng-container>
+              <ng-container *ngIf="user === null">Bienvenido</ng-container>
             </span>
             <a class="user-menu-dropdown__logout" href="#" *ngIf="user" (click)="_authService.logout()">Cerrar sesión</a>
-            <ng-container *ngIf="!user">
+            <ng-container *ngIf="user === null">
             <a class="site-button site-button" href="#" routerLink="/login">Inicia sesión</a>
             <a class="site-button site-button--solid" href="#" routerLink="/register">Crea tu cuenta</a>
             </ng-container>
