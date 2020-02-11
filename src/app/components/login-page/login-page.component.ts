@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from '../../servicios/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit() {
+  }
+
+  onSubmitLogin(email, password) {
+      this.authService.loginEmail(email, password)
+          .then(a => {console.log(a);},
+              err => {console.log(err);});
   }
 
 }

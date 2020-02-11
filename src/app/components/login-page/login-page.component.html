@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-body">
         <h1 class="text-center">LOGIN</h1>
-        <form (submit)="onSubmitLogin()">
+        <form (submit)="onSubmitLogin(email, password)">
           <div class="form-group">
             <label for="email">Email</label>
             <input type="email" name="email" id="email" [(ngModel)]="email" class="form-control">
