@@ -91,6 +91,15 @@ a.site-button {
     color: #fff;
 }
 
+.content-wrapper {
+  display: grid;
+  justify-content: center;
+}
+
+.content-wrapper > * {
+  grid-column: 2;
+}
+
 @media screen and (min-width: 992px){
     body {
         padding-top: 54px;
