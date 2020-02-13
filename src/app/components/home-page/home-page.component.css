@@ -1,0 +1,3 @@
+:host {
+  grid-template-columns: 50px minmax(280px, 1fr) 50px;
+}
