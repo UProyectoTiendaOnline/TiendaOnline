@@ -1,3 +1,97 @@
 :host {
-  grid-template-columns: 50px minmax(280px, 1fr) 50px;
+  grid-template-columns: 0 1fr 0;
+  text-align: center;
+}
+
+.carousel {
+    grid-column: 1/-1;
+    height: 50vh;
+}
+
+.quick-search {
+    background: #444;
+    color: #fff;
+    grid-column: 1/-1;
+    padding: 1em 0 1.6em 0;
+}
+
+.quick-search .fas {
+    display: inline-block;
+    text-align: center;
+    margin-right: 0.6em;
+    width: 1.2em;
+}
+
+.quick-search .site-button {
+    margin: 0.5em;
+}
+
+.quick-search .site-button:not(:active):not(:hover) {
+    border-color: white;
+}
+
+.quick-search .site-button:active,
+.quick-search .site-button:hover {
+    background: #222222;
+    border-color: #222222;
+}
+
+.tire-brands .orange-title {
+    line-height: 1;
+    margin: 1.6em 0 0.9em 0;
+}
+
+.tire-brands__items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    width: 80%;
+}
+
+.tire-brands__item {
+    margin: 10px;
+}
+
+.tire-brands__item img {
+    width: 150px;
+}
+
+.tire-brands > a {
+    display: inline-block;
+    margin: 1em 0 2em 0;
+}
+
+.gray-box {
+    background: #f5f5f5;
+}
+
+@media screen and (min-width: 768px) {
+    .quick-search .site-button {
+        font-size: 20px;
+        padding: 0.8em 1.6em;
+    }
+    .tire-brands__item {
+        margin: 18px;
+    }
+    .tire-brands > a {
+        font-size: 20px;
+        margin: 0.6em 0 1.8em 0;
+    }
+}
+
+@media screen and (min-width: 930px) and (max-width: 991px), 
+screen and (min-width: 1030px) {
+    .tire-brands__items {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    :host {
+      grid-template-columns: minmax(50px, 1fr) minmax(auto, 1199px) minmax(50px, 1fr);
+    }
+    .tire-brands {
+        margin-top: 55px;
+    }
 }
