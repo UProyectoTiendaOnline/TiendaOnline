@@ -56,6 +56,22 @@ h1, h2, h3, h4, h5, .title, .subtitle {
     font-weight: 500;
 }
 
+h2 {
+  font-size: 21px;
+}
+
+.orange-title {
+    color: #DC3636;
+}
+
+a {
+    color: #2680DC;
+}
+
+a:hover, a:active {
+    color: #0453DB;
+}
+
 .site-button {
     background: transparent;
     border-color: #333;
@@ -100,9 +116,18 @@ a.site-button {
   grid-column: 2;
 }
 
+@media screen and (min-width: 768px){
+    h2 {
+      font-size: 23px;
+    }
+}
+
 @media screen and (min-width: 992px){
     body {
         padding-top: 54px;
         font-size: 16px;
+    }
+    h2 {
+      font-size: 26px;
     }
 }
