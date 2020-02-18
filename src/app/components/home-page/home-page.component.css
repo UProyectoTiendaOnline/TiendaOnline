@@ -66,6 +66,30 @@
     background: #f5f5f5;
 }
 
+.benefits .fas,
+.benefits .fa {
+    color: #2680dc;
+    font-size: 50px;
+}
+
+.benefits__item {
+    margin: 3em auto;
+    width: 260px;
+}
+
+.benefits .orange-title {
+    margin: 1em 0 0.6em 0;
+}
+
+.benefits p {
+    margin: 0;
+}
+
+.benefits a {
+    display: inline-block;
+    margin-top: 0.85em;
+}
+
 .bottom-box {
     padding: 2.5em 0;
 }
@@ -104,6 +128,40 @@
     }
 }
 
+@media screen and (min-width: 768px) and (max-width: 1099px) {
+    .benefits {
+        padding-bottom: 30px;
+    }
+    .benefits__item {
+        align-items: center;
+        display: grid;
+        grid-template-areas: 
+            "i t"
+            "i p"
+            "i a";
+        text-align: left;
+        width: 600px;
+    }
+    .benefits__item .fas,
+    .benefits__item .fa {
+        font-size: 70px;
+        grid-area: i;
+        margin-right: 0.5em;
+    }
+    .benefits__item .orange-title {
+        font-size: 27px;
+        grid-area: t;
+    }
+    .benefits__item p {
+        font-size: 20px;
+        grid-area: p;
+    }
+    .benefits__item a {
+        font-size: 19px;
+        grid-area: a;
+    }
+}
+
 @media screen and (min-width: 930px) and (max-width: 991px), 
 screen and (min-width: 1030px) {
     .tire-brands__items {
@@ -123,5 +181,38 @@ screen and (min-width: 1030px) {
     }
     .bottom-box .site-button {
         font-size: 1.2em;
+    }
+}
+@media screen and (min-width: 1100px) {
+    .benefits {
+        display: flex;
+        justify-content: space-evenly;
+        margin: 115px 0;
+        position: relative;
+    }
+    .benefits__item {
+        margin: 0;
+        width: 230px;
+    }
+    .benefits__item:nth-child(2)::after,
+    .benefits__item:nth-child(2)::before {
+        background: #ccc;
+        content: "";
+        display: block;
+        height: 170px;
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        width: 1px;
+    }
+    .benefits__item:nth-child(2)::after {
+        right: calc(33.5% + 14px);
+    }
+    .benefits__item:nth-child(2)::before {
+        left: calc(33.5% + 14px);
+    }
+    .benefits__item .orange-title {
+        font-size: 20px;
+        margin: 1.4em 0 1em 0;
     }
 }
