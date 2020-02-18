@@ -66,6 +66,20 @@
     background: #f5f5f5;
 }
 
+.bottom-box {
+    padding: 2.5em 0;
+}
+
+.bottom-box .orange-title {
+    margin: 0 auto 1.5em auto;
+    max-width: 600px;
+    width: 91%;
+}
+
+.bottom-box .site-button {
+    border-radius: 10px;
+}
+
 @media screen and (min-width: 768px) {
     .quick-search .site-button {
         font-size: 20px;
@@ -77,6 +91,16 @@
     .tire-brands > a {
         font-size: 20px;
         margin: 0.6em 0 1.8em 0;
+    }
+    .bottom-box {
+        padding: 4em 0;
+    }
+    .bottom-box .orange-title {
+        font-size: 28px;
+        margin-bottom: 2em;
+    }
+    .bottom-box .site-button {
+        padding: 1em 1.5em;
     }
 }
 
@@ -93,5 +117,11 @@ screen and (min-width: 1030px) {
     }
     .tire-brands {
         margin-top: 55px;
+    }
+    .bottom-box {
+        margin-bottom: 70px;
+    }
+    .bottom-box .site-button {
+        font-size: 1.2em;
     }
 }
