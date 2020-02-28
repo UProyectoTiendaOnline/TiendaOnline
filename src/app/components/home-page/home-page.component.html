@@ -1,4 +1,17 @@
-<div class="carousel"></div>
+<div class="carousel">
+    <nz-carousel [nzEffect]="scrollx" nzEnableSwipe="false">
+        <div nz-carousel-content *ngFor="let index of [1,2,3,4]">
+            <a href="#">
+                <picture>
+                    <source
+                        srcset="https://http2.mlstatic.com/optimize/o:f_webp/resources/deals/exhibitors_resources/mlm-home-desktop-slider-picture-83d7aafd-e21c-4750-aa24-b4ebd6e284f2.jpg"
+                        media="(min-width: 768px)" />
+                    <img src="https://http2.mlstatic.com/optimize/o:f_webp/resources/deals/exhibitors_resources/mlm-home-mobile-big-banner-picture-5ec46ee3-4acf-4016-908f-f0175cb17acc.jpg" alt="Imagen de carrusel" />
+                </picture>
+            </a>
+        </div>
+    </nz-carousel>
+</div>
 <div class="quick-search">
     <h2>¡Ahorra tiempo, encuentra tus llantas ideales!</h2>
     <a class="site-button" href="#"><i class="fas fa-car"></i>Buscar por vehículo</a>

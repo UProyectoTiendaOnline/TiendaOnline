@@ -18,6 +18,8 @@ import {FlashMessagesService} from 'angular2-flash-messages';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 
+import { NzCarouselModule } from 'ng-zorro-antd/carousel';
+
 import {environment} from '../environments/environment';
 
 import { AuthService } from './servicios/auth.service';
@@ -42,7 +44,8 @@ imports: [
   FormsModule,
   AngularFireAuthModule,
   AngularFireModule.initializeApp(environment.firebaseconfig),
-  FlashMessagesModule
+  FlashMessagesModule,
+  NzCarouselModule
 ],
 providers: [AuthService, FlashMessagesService],
 bootstrap: [AppComponent]
