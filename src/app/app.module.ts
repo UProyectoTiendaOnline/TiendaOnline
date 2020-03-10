@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,7 +10,7 @@ import { RegisterPageComponent } from './components/register-page/register-page.
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 
-import { FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import {FlashMessagesModule} from 'angular2-flash-messages';
@@ -23,6 +24,7 @@ import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import {environment} from '../environments/environment';
 
 import { AuthService } from './servicios/auth.service';
+import { SearchModalService } from './servicios/search-modal.service';
 import { PrivatePageComponent } from './components/private-page/private-page.component';
 import { SiteFooterComponent } from './components/site-footer/site-footer.component';
 
@@ -42,12 +44,14 @@ imports: [
   BrowserModule,
   AppRoutingModule,
   FormsModule,
+  ReactiveFormsModule,
   AngularFireAuthModule,
   AngularFireModule.initializeApp(environment.firebaseconfig),
   FlashMessagesModule,
-  NzCarouselModule
+  BrowserAnimationsModule,
+  NzCarouselModule,
 ],
-providers: [AuthService, FlashMessagesService],
+providers: [AuthService, FlashMessagesService, SearchModalService],
 bootstrap: [AppComponent]
 })
 export class AppModule { }
