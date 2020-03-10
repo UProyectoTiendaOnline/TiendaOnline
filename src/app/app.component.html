@@ -1,3 +1,68 @@
 <app-navbar></app-navbar>
 <router-outlet></router-outlet>
 <site-footer></site-footer>
+
+<nz-modal 
+  [(nzVisible)]="_modalService.showByCarModal" 
+  (nzOnCancel)="_modalService.toggleByCarModal()"
+  [nzTitle]="byCarModalTitle"
+  [nzContent]="byCarModalContent"
+  [nzFooter]="byCarModalFooter">
+
+  <ng-template #byCarModalTitle>
+    <h2 class="orange-title">Buscar por auto</h2>
+  </ng-template>
+
+  <ng-template #byCarModalContent>
+    <nz-cascader
+      [nzOptions]="byCarCascaderOptions" 
+      [(ngModel)]="byCarCascaderValue"
+      (ngModelChange)="onCarChanges($event)"
+      [nzShowSearch]="true"
+      nzPlaceHolder="Tip: Escribe para encontrar resultados más rápido"
+      nzChangeOnSelect>
+    </nz-cascader>
+    <ol class="instructions-box">
+      <li>Selecciona la marca de tu auto</li>
+      <li>Selecciona el modelo</li>
+      <li>Selecciona el año correspondiente a su edición</li>
+      <li>Selecciona la variante del modelo</li>
+    </ol>
+  </ng-template>
+
+  <ng-template #byCarModalFooter>
+    <button class="site-button site-button--solid" nz-button nzType="primary" (click)="_modalService.toggleByCarModal()">Buscar llantas</button>
+  </ng-template>
+</nz-modal>
+
+<nz-modal 
+  [(nzVisible)]="_modalService.showBySizeModal" 
+  (nzOnCancel)="_modalService.toggleBySizeModal()"
+  [nzTitle]="bySizeModalTitle"
+  [nzContent]="bySizeModalContent"
+  [nzFooter]="bySizeModalFooter">
+
+  <ng-template #bySizeModalTitle>
+    <h2 class="orange-title">Buscar por medidas</h2>
+  </ng-template>
+
+  <ng-template #bySizeModalContent>
+    <nz-cascader
+      [nzOptions]="bySizeCascaderOptions" 
+      [(ngModel)]="bySizeCascaderValue"
+      (ngModelChange)="onSizeChanges($event)"
+      [nzShowSearch]="true"
+      nzPlaceHolder="Tip: Escribe para encontrar resultados más rápido"
+      nzChangeOnSelect>
+    </nz-cascader>
+    <ol class="instructions-box">
+      <li>Selecciona el grosor de la llanta (cm)</li>
+      <li>Selecciona la altura (cm)</li>
+      <li>Selecciona el tamaño del rin</li>
+    </ol>
+  </ng-template>
+
+  <ng-template #bySizeModalFooter>
+    <button class="site-button site-button--solid" nz-button nzType="primary" (click)="_modalService.toggleBySizeModal()">Buscar llantas</button>
+  </ng-template>
+</nz-modal>
