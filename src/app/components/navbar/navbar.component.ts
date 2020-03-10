@@ -15,6 +15,7 @@ import { filter } from "rxjs/operators";
 import {Subscription} from 'rxjs';
 
 import {AuthService} from '../../servicios/auth.service';
+import {SearchModalService} from '../../servicios/search-modal.service';
 
 @Component({
   selector: 'app-navbar',
@@ -33,7 +34,8 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
   constructor(
     private _renderer: Renderer2, 
     private _router: Router, 
-    public _authService: AuthService) {
+    public _authService: AuthService,
+    public _modalService: SearchModalService) {
       this.widthBreakdown = window.matchMedia('(min-width: 992px)');
       this.showMenu = false;
 
@@ -66,6 +68,11 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
 
   toggleMobileMenu() {
     this.showMenu = !this.showMenu;
+    if (this.showMenu) {
+      this._renderer.addClass(document.documentElement, 'cdk-global-scrollblock');
+    } else {
+      this._renderer.removeClass(document.documentElement, 'cdk-global-scrollblock');
+    }
   }
 
   checkWindowWidth = () => {
@@ -105,6 +112,16 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
     if (this.touchListener) {
       this.touchListener()
     }
+  }
+
+  toggleByCarModal() {
+    this.toggleMobileMenu();
+    this._modalService.toggleByCarModal();
+  }
+
+  toggleBySizeModal() {
+    this.toggleMobileMenu();
+    this._modalService.toggleBySizeModal();
   }
 
   ngAfterViewInit() {

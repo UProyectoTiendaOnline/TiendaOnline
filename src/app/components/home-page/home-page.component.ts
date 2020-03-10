@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import {SearchModalService} from '../../servicios/search-modal.service';
+
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -10,7 +12,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public _modalService: SearchModalService
+  ) { }
 
   ngOnInit() {
   }

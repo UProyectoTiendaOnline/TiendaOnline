@@ -33,7 +33,12 @@
     background: #444;
     color: #fff;
     grid-column: 1/-1;
-    padding: 1em 0 1.6em 0;
+    padding: 1.6em 0;
+}
+
+.quick-search h2 {
+    margin: 0 auto 10px auto;
+    width: 98%;
 }
 
 .quick-search .fas {
