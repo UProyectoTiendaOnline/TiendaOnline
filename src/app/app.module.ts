@@ -20,6 +20,9 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzCascaderModule } from 'ng-zorro-antd/cascader';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 import {environment} from '../environments/environment';
 
@@ -28,6 +31,11 @@ import { SearchModalService } from './servicios/search-modal.service';
 import { PrivatePageComponent } from './components/private-page/private-page.component';
 import { SiteFooterComponent } from './components/site-footer/site-footer.component';
 
+import { registerLocaleData } from '@angular/common';
+import { NZ_I18N, es_ES } from 'ng-zorro-antd';
+import es from '@angular/common/locales/es';
+
+registerLocaleData(es);
 
 @NgModule({
    declarations: [
@@ -50,8 +58,11 @@ imports: [
   FlashMessagesModule,
   BrowserAnimationsModule,
   NzCarouselModule,
+  NzModalModule,
+  NzCascaderModule,
+  NzSelectModule
 ],
-providers: [AuthService, FlashMessagesService, SearchModalService],
+providers: [AuthService, FlashMessagesService, SearchModalService, { provide: NZ_I18N, useValue: es_ES}],
 bootstrap: [AppComponent]
 })
 export class AppModule { }
